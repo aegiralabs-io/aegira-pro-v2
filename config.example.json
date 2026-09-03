@@ -1,0 +1,11 @@
+{
+  "target_service": "cron",
+  "target_container": null,
+  "alerts": {
+    "enabled": false,
+    "recipient_email": null,
+    "composio_user_id": null,
+    "notify_on_recovery": false
+  },
+  "license_key": null
+}
