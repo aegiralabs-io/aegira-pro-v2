@@ -61,6 +61,7 @@ struct AlertConfig {
     notify_on_recovery: bool,
 }
 
+#[derive(Debug, Clone, PartialEq, Eq)]
 struct RuleFileFingerprint {
     files: Vec<(String, u64, u64)>,
 }
@@ -931,6 +932,10 @@ fn perform_remediation(remediation: &Remediation) -> Result<(), String> {
             let docker = docker_binary()?;
             log_incident(&format!("[RECOVERY] Restarting container: {}", target));
             execute_command(docker, &["restart", target.as_str()])
+        }
+        Remediation::AlertOnly => {
+            log_incident("[RECOVERY] Alert-only remediation selected. No recovery action executed.");
+            Ok(())
         }
     }
 }
